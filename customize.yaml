@@ -1,0 +1,52 @@
+scene.movie_time_downstairs:
+  emulated_hue: true
+  emulated_hue_name: 'movie time'
+
+scene.movie_time_in_bed:
+  emulated_hue: true
+  emulated_hue_name: 'movie time in bed'
+
+scene.relax_upstairs:
+  emulated_hue: true
+  emulated_hue_name: 'relax in bed'
+
+scene.relax_downstairs:
+  emulated_hue: true
+  emulated_hue_name: 'relax downstairs'
+
+media_player.bedroom:
+  emulated_hue_name: "chromecast"
+
+media_player.living_room:
+  emulated_hue_name: 'soundbar'
+
+sensor.speedtest_ping:
+  icon: mdi:clock
+  friendly_name: "Ping"
+
+sensor.speedtest_download:
+  icon: mdi:arrow-down
+  friendly_name: "Download"
+
+sensor.speedtest_upload:
+  icon: mdi:arrow-up
+  friendly_name: "Upload"
+
+device_tracker.livingroomtv:
+  icon: mdi:television
+
+device_tracker.xboxone:
+  icon: mdi:gamepad-variant
+
+device_tracker.hue:
+  icon: mdi:lightbulb
+
+device_tracker.ubiquitirouter:
+  icon: mdi:router-wireless
+
+sensor.battery_scott:
+  icon: mdi:battery-unknown
+
+light.bedroom_2:
+  emulated_hue: false
+  hidden: true

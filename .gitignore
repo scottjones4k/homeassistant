@@ -1,0 +1,9 @@
+tts/
+deps/
+secrets.yaml
+nest.conf
+emulated_hue_ids.json
+phue.conf
+home-assistant.log
+.uuid
+.HA_VERSION

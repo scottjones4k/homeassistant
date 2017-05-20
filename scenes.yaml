@@ -1,0 +1,42 @@
+- name: Relax Downstairs
+  entities:
+    light.living_room:
+      state: on
+      profile: relax
+
+- name: Movie Time Downstairs
+  entities:
+    light.living_room:
+      state: on
+      profile: movie
+
+- name: Energise Downstairs
+  entities:
+    light.living_room:
+      state: on
+      profile: energize
+
+- name: Relax Upstairs
+  entities:
+    light.bedroom:
+      state: on
+      profile: relax
+
+- name: Energise Upstairs
+  entities:
+    light.bedroom:
+      state: on
+      profile: energize
+
+- name: Movie Time in Bed
+  entities:
+    light.bedroom:
+      state: on
+      profile: movie
+
+- name: Going Upstairs
+  entities:
+    light.bedroom:
+      state: on
+    light.stairs:
+      state: on

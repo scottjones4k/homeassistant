@@ -1,0 +1,27 @@
+- alias: 'timer_living_on'
+  trigger:
+    - platform: event
+      event_type: alexa.timer.activated
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.living_room
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.flash_living_room_multiple_already_on
+
+- alias: 'timer_living_off'
+  trigger:
+    - platform: event
+      event_type: alexa.timer.activated
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.living_room
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.flash_living_room_multiple

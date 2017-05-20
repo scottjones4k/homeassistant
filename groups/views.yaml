@@ -1,0 +1,28 @@
+default_view:
+  name: DEFAULT
+  view: yes
+  entities:
+    - group.downstairs
+    - group.upstairs
+    - group.modes
+    - group.scenes
+    - media_player.bedroom
+    - media_player.xboxone
+    - media_player.living_room
+    - group.people
+    - group.weather
+
+misc:
+  name: Misc.
+  view: yes
+  entities:
+    - group.nest
+    - group.other
+
+devices_view:
+  name: Devices
+  view: yes
+  entities:
+    - group.devices
+    - group.network_stats
+    - group.pi_stats

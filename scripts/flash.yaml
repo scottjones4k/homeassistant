@@ -1,0 +1,53 @@
+flash_living_room_single:
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.living_room
+    - delay:
+        seconds: 1
+    - service: homeassistant.turn_off
+      data:
+        entity_id: light.living_room
+
+flash_living_room_single_on:
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: light.living_room
+    - delay:
+        seconds: 1
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.living_room
+
+flash_living_room_multiple:
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+
+flash_living_room_multiple_already_on:
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on

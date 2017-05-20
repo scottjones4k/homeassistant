@@ -1,0 +1,50 @@
+- platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+- platform: fixer
+  name: EUR
+  base: GBP
+  target: EUR
+
+- platform: fixer
+  name: USD
+  base: GBP
+  target: USD
+
+- platform: darksky
+  api_key: a66fb9069e93cf33173ba8286345a717
+  monitored_conditions:
+    - summary
+    - precip_type
+    - precip_intensity
+    - precip_probability
+    - temperature
+    - humidity
+
+- platform: fastdotcom
+
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_free
+    - type: processor_use
+    - type: since_last_boot
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+
+- platform: template
+  sensors:
+    battery_scott:
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.scottphone.attributes.battery %}
+              {{ states.device_tracker.scottphone.attributes.battery }}
+          {% else %}
+              {{ states.sensor.battery_scott.state }}
+          {%- endif %}

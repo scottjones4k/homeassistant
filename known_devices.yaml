@@ -1,0 +1,171 @@
+
+
+HiveHub:
+  hide_if_away: false
+  mac: 00:1C:2B:0B:4D:1D
+  name: Hive Hub
+  picture:
+  track: true
+  vendor: Alertme.com Limited
+
+UbiquitiRouter:
+  hide_if_away: false
+  mac: F0:9F:C2:62:16:55
+  name: Ubiquiti Router
+  picture:
+  track: true
+  vendor: Ubiquiti Networks Inc.
+
+LivingRoomAlexa:
+  hide_if_away: false
+  mac: 88:71:E5:24:12:3D
+  name: Alexa (Living Room)
+  picture:
+  track: true
+  vendor: Amazon Technologies Inc.
+
+Chromecast:
+  hide_if_away: false
+  mac: A4:77:33:C6:32:48
+  name: Chromecast
+  picture:
+  track: true
+  vendor: Google, Inc.
+
+WiFiAP:
+  hide_if_away: false
+  mac: E0:19:1D:74:5E:F6
+  name: WiFi AP
+  picture:
+  track: true
+  vendor: HUAWEI TECHNOLOGIES CO.,LTD
+
+BedroomAlexa:
+  hide_if_away: false
+  mac: F0:27:2D:77:39:D8
+  name: Alexa (Bedroom)
+  picture:
+  track: true
+  vendor: Amazon Technologies Inc.
+
+ScottPhone:
+  hide_if_away: false
+  mac: C0:EE:FB:D2:AC:C0
+  name: Scott (Phone)
+  picture:
+  track: true
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+Computer:
+  hide_if_away: false
+  mac: 90:2B:34:AA:C4:29
+  name: Computer
+  picture:
+  track: true
+  vendor: GIGA-BYTE TECHNOLOGY CO.,LTD.
+
+Sonos:
+  hide_if_away: false
+  mac: 94:9F:3E:63:6E:C4
+  name: Sonos
+  picture:
+  track: true
+  vendor: Sonos, Inc.
+
+Vonage:
+  hide_if_away: false
+  mac: 00:0B:82:9F:23:C7
+  name: Vonage (Phone)
+  picture:
+  track: true
+  vendor: Grandstream Networks, Inc.
+
+SetTopBox:
+  hide_if_away: false
+  mac: 50:A7:2B:8C:43:77
+  name: Set Top Box
+  picture:
+  track: true
+  vendor: HUAWEI TECHNOLOGIES CO.,LTD
+
+Hue:
+  hide_if_away: false
+  mac: 00:17:88:47:27:EC
+  name: Hue Hub
+  picture:
+  track: true
+  vendor: Philips Lighting BV
+
+limitlessled:
+  hide_if_away: false
+  mac: AC:CF:23:39:CC:D8
+  name: LimitlessLed
+  picture:
+  track: true
+  vendor: Hi-flying electronics technology Co.,Ltd
+
+LauraPhone:
+  hide_if_away: false
+  mac: 58:48:22:7F:E3:40
+  name: Laura Phone
+  picture:
+  track: true
+  vendor: Sony Mobile Communications AB
+
+LauraTablet:
+  hide_if_away: false
+  mac: 80:A5:89:6B:5A:A9
+  name: Laura Tablet
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+nestupstairs:
+  hide_if_away: false
+  mac: 18:B4:30:39:91:CE
+  name: Nest Upstairs
+  picture:
+  track: true
+  vendor: unknown
+
+Mac:
+  hide_if_away: false
+  mac: 34:36:3B:6C:AA:74
+  name: Mac
+  picture:
+  track: true
+  vendor: Apple, Inc.
+
+xboxone:
+  hide_if_away: false
+  mac: F0:1D:BC:36:89:A8
+  name: Xbox One
+  picture:
+  track: true
+  vendor: Microsoft Corporation
+
+livingroomtv:
+  hide_if_away: false
+  mac: E8:5B:5B:95:D5:6F
+  name: Living Room TV
+  picture:
+  track: true
+  vendor: LG
+
+
+nestdownstairs:
+  hide_if_away: false
+  mac: 18:B4:30:39:A3:97
+  name: Nest Downstairs
+  picture:
+  track: true
+  vendor: Nest Labs Inc.
+
+34fcefcb2403:
+  hide_if_away: false
+  mac: 34:FC:EF:CB:24:03
+  name: 34fcefcb2403
+  picture:
+  track: true
+  vendor: LG Electronics (Mobile Communications)
+

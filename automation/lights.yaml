@@ -1,0 +1,46 @@
+- alias: Turn on light when sun sets
+  trigger:
+    - platform: sun
+      event: sunset
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.people
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.relax_downstairs
+
+- alias: Turn on light when someone comes home
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.people
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+  action:
+    service: light.turn_on
+    entity_id: light.stairs
+
+- alias: Stairs Off
+  trigger:
+    - platform: state
+      entity_id: light.stairs
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.stairs_delayed_off

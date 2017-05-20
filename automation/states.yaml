@@ -1,0 +1,76 @@
+- alias: Night Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off
+
+- alias: Night Mode Guest
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off_guest
+
+- alias: Bedtime
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bedtime
+
+- alias: 'Turn off night mode'
+  trigger:
+    - platform: sun
+      event: sunrise
+
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.night_mode
+
+- alias: 'Set Away Mode'
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'not_home'
+
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.away_mode
+
+- alias: 'Set Home Mode'
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.away_mode
+
+- alias: 'Everyone Gone All Off'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away_mode
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off

@@ -1,0 +1,39 @@
+- alias: 'telegram bot to set alarm home'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/arm-home'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_home
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_away
+
+- alias: 'telegram bot to set alarm away'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/arm-away'
+  action:
+    - service: input_boolean.turn_on 
+      entity_id: input_boolean.alarm_away
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_home
+
+- alias: 'telegram bot to disarm alarm'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/disarm'
+      args: "7708"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_home
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_away

@@ -1,0 +1,102 @@
+bedtime:
+  sequence:
+    - service: input_boolean.turn_off
+      data:
+         entity_id: input_boolean.bedtime
+    - service: scene.turn_on
+      data:
+         entity_id: scene.going_upstairs
+    - delay:
+         minutes: 5
+    - service: light.turn_off
+      data:
+         entity_id: group.downstairs
+    - service: switch.turn_off
+      data:
+        entity_id: switch.christmas_lights
+
+stairs_delayed_off:
+  sequence:
+    - delay:
+         minutes: 5
+    - service: light.turn_off
+      data:
+         entity_id: light.stairs
+
+turn_all_off:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
+    - service: switch.turn_off
+      data:
+        entity_id: switch.christmas_lights
+
+turn_all_off_guest:
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room
+    - service: light.turn_off
+      data:
+        entity_id: light.stairs
+    - service: light.turn_off
+      data:
+        entity_id: light.bedroom
+    - service: switch.turn_off
+      data:
+        entity_id: switch.christmas_lights
+
+flash_living_room_single:
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.living_room
+    - delay:
+        seconds: 1
+    - service: homeassistant.turn_off
+      data:
+        entity_id: light.living_room
+
+flash_living_room_single_on:
+  sequence:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: light.living_room
+    - delay:
+        seconds: 1
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.living_room
+
+flash_living_room_multiple:
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single
+
+flash_living_room_multiple_already_on:
+  sequence:
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on
+    - delay:
+        seconds: 3
+    - service: script.turn_on
+      data:
+        entity_id: script.flash_living_room_single_on

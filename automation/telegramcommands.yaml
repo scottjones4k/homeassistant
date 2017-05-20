@@ -1,0 +1,14 @@
+- alias: 'Telegram commands'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/start'
+  action:
+    - service: notify.telegramscott
+      data:
+        message: 'commands'
+        data:
+          keyboard:
+            - '/arm-home, /arm-away'
+            - '/ping'

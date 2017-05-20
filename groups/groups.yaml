@@ -1,0 +1,109 @@
+downstairs:
+  name: Downstairs
+  entities:
+    - light.living_room
+upstairs:
+  name: Upstairs
+  entities:
+    - light.bedroom
+    - light.spare_room
+    - light.stairs
+
+coming_in_lights:
+  entities:
+    - light.living_room
+    - light.stairs
+
+scenes:
+  name: Scenes
+  entities:
+    - scene.energise_downstairs
+    - scene.relax_downstairs
+    - scene.movie_time_downstairs
+    - scene.energise_upstairs
+    - scene.relax_upstairs
+    - scene.movie_time_in_bed
+modes:
+  name: Modes
+  entities:
+    - input_boolean.bedtime
+    - input_boolean.night_mode
+    - input_boolean.away_mode
+    - input_boolean.notify_home
+    - input_boolean.guest_mode
+    - sensor.alarm_state
+
+people:
+  name: People
+  entities:
+    - device_tracker.lauraphone
+    - device_tracker.scottphone
+    - sensor.battery_scott
+
+devices:
+  name: Devices
+  entities:
+    - device_tracker.hivehub
+    - device_tracker.hue
+    - device_tracker.livingroomtv
+    - device_tracker.sonos
+    - device_tracker.mac
+    - device_tracker.settopbox
+    - device_tracker.computer
+    - device_tracker.limitlessled
+    - device_tracker.lauratablet
+    - device_tracker.ubiquitirouter
+    - device_tracker.vonage
+    - device_tracker.wifiap
+    - device_tracker.xboxone
+    - device_tracker.chromecast
+    - device_tracker.bedroomalexa
+    - device_tracker.livingroomalexa
+
+network_stats:
+  name: Network
+  entities:
+    - sensor.fastcom_download
+    - sensor.speedtest_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_upload
+    - sensor.received_eth0
+    - sensor.sent_eth0
+
+pi_stats:
+  name: Pi
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_use_home
+    - sensor.ram_free
+    - sensor.since_last_boot
+    - switch.minecraft
+
+weather:
+  name: Weather
+  entities:
+    - sun.sun
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_precip
+    - sensor.dark_sky_precip_intensity
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_temperature
+
+nest:
+  name: Nest
+  entities:
+    - sensor.downstairs_nest_protect_co_status
+    - sensor.upstairs_nest_protect_co_status
+    - sensor.downstairs_nest_protect_smoke_status
+    - sensor.upstairs_nest_protect_smoke_status
+    - sensor.downstairs_nest_protect_battery_health
+    - sensor.upstairs_nest_protect_battery_health
+    - binary_sensor.downstairs_nest_protect_online
+    - binary_sensor.upstairs_nest_protect_online
+
+other:
+  name: Other
+  entities:
+    - sensor.usd
+    - sensor.eur
