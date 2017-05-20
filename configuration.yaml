@@ -126,3 +126,6 @@ group: !include_dir_merge_named groups
 script: !include_dir_merge_named scripts
 scene: !include scenes.yaml
 automation: !include_dir_merge_list automation
+
+shell_command:
+  get_latest_config: bash /home/homeassistant/.homeassistant/bin/update_config_from_github.sh

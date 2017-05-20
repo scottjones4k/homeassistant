@@ -48,3 +48,7 @@
           {% else %}
               {{ states.sensor.battery_scott.state }}
           {%- endif %}
+
+- platform: command_line
+  name: commits_behind
+  command: ./home/homeassistant/.homeassistant/bin/commits_behind.sh
