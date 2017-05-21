@@ -18,7 +18,7 @@ misc:
   entities:
     - group.nest
     - group.other
-    - script.update_config
+    - group.updates
 
 devices_view:
   name: Devices

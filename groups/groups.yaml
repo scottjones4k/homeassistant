@@ -107,3 +107,9 @@ other:
   entities:
     - sensor.usd
     - sensor.eur
+
+updates:
+    name: Updates
+    entities:
+        - sensor.commits_behind
+        - script.update_config
