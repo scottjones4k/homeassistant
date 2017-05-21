@@ -2,10 +2,10 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 53.971773
-  longitude: -1.090420
+  latitude: !secret latitude
+  longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 46
+  elevation: !secret elevation
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -60,11 +60,11 @@ light:
 
 http:
   api_password: !secret http_password
-  ssl_certificate: /etc/letsencrypt/live/ladyroad.duckdns.org/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/ladyroad.duckdns.org/privkey.pem
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_key
   trusted_networks:
     - 172.16.5.0/24
-  base_url: ladyroad.duckdns.org:8123
+  base_url: !secret base_url
   server_port: 8123
 
 nest:
@@ -81,8 +81,8 @@ notify:
     user_key: !secret pushover_user_key
   - name: telegramscott
     platform: telegram
-    api_key: 360233929:AAHoFtmH6eHItE2k6MwJnCYhiQ-GGHJqi5k
-    chat_id: 259831634
+    api_key: !secret telegram_key
+    chat_id: !secret telegram_chat
   - name: global
     platform: group
     services:
