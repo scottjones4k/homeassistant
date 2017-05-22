@@ -71,7 +71,6 @@ class uTorrentSensor(Entity):
         self._state = None
         self._unit_of_measurement = SENSOR_TYPES[sensor_type][1]
         self.encoding = "utf-8"
-        _LOGGER.error("init" + self._name)
 
     @property
     def name(self):
@@ -91,13 +90,11 @@ class uTorrentSensor(Entity):
     # pylint: disable=no-self-use
     def refresh_utorrent_data(self):
         """Call the throttled uTorrent refresh method."""
-        _LOGGER.error("refreshing " + self._name)
         res = requests.get(self.baseUri + 'token.html', auth=self.auth)
         token = res.content[44:108].decode(encoding)
         res2 = requests.get(self.baseUri + '?list=1&token='+token, auth=self.auth, cookies=res.cookies)
         js = json.loads(res2.content.decode(encoding))
         self.torrents = js['torrents']
-        _LOGGER.error("refreshed " + self._name)
 
     def update(self):
         """Get the latest data from uTorrent and updates the state."""

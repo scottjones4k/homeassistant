@@ -3,6 +3,10 @@
   port: !secret utorrent_port
   username: !secret utorrent_user
   password: !secret utorrent_password
+  monitored_conditions:
+    - current_status
+    - download_speed
+    - upload_speed
 
 - platform: speedtest
   monitored_conditions:
