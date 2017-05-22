@@ -66,7 +66,7 @@ class uTorrentSensor(Entity):
         self._name = SENSOR_TYPES[sensor_type][0]
         address = host
         if (port is not None):
-            address += ':' + port
+            address += ':' + str(port)
         self.baseUri = 'http://'+address+'/gui/'
         self.auth = (username, password)
         self.type = sensor_type
