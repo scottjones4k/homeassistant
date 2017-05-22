@@ -92,9 +92,9 @@ class uTorrentSensor(Entity):
     def refresh_utorrent_data(self):
         """Call the throttled uTorrent refresh method."""
         res = requests.get(self.baseUri + 'token.html', auth=self.auth)
-        token = res.content[44:108].decode(encoding)
+        token = res.content[44:108].decode(self.encoding)
         res2 = requests.get(self.baseUri + '?list=1&token='+token, auth=self.auth, cookies=res.cookies)
-        js = json.loads(res2.content.decode(encoding))
+        js = json.loads(res2.content.decode(self.encoding))
         self.torrents = js['torrents']
 
     def update(self):
