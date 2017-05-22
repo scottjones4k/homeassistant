@@ -1,7 +1,7 @@
 - platform: utorrent
   host: !secret utorrent_host
   port: !secret utorrent_port
-  username: !secret utorrent_username
+  username: !secret utorrent_user
   password: !secret utorrent_password
 
 - platform: speedtest
