@@ -106,8 +106,8 @@ class uTorrentSensor(Entity):
         upload = 0
         download = 0
         for torrent in self.torrents:
-            upload += torrent[]
-            download += torrent[]
+            upload += torrent[8]
+            download += torrent[9]
         if upload > 0 and download > 0:
             self._state = 'Up/Down'
         elif upload > 0 and download == 0:
