@@ -26,6 +26,8 @@ DEFAULT_NAME = 'uTorrent'
 DEFAULT_PORT = None
 
 SENSOR_TYPES = {
+    'torrents_seeding': ['Seeding', None],
+    'torrents_downloading': ['Seeding', None],
     'current_status': ['Status', None],
     'download_speed': ['Down Speed', 'MB/s'],
     'upload_speed': ['Up Speed', 'MB/s']
@@ -103,9 +105,15 @@ class uTorrentSensor(Entity):
         
         upload = 0
         download = 0
+        seeding = 0
+        downloading = 0
         for torrent in self.torrents:
             upload += torrent[8]
             download += torrent[9]
+            if (torrent[4] == 1000):
+                seeding += 1
+            else:
+                downloading += 1
         if self.type == 'current_status':
             if upload > 0 and download > 0:
                 self._state = 'Up/Down'
@@ -124,3 +132,7 @@ class uTorrentSensor(Entity):
             mb_spd = float(upload)
             mb_spd = mb_spd / 1024 / 1024
             self._state = round(mb_spd, 2 if mb_spd < 0.1 else 1)
+        elif self.type == 'torrents_seeding':
+            self._state = seeding
+        elif self.type == 'torrents_downloading':
+            self._state = downloading

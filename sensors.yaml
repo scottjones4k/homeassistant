@@ -7,6 +7,8 @@
     - 'current_status'
     - 'download_speed'
     - 'upload_speed'
+    - 'torrents_seeding'
+    - 'torrents_downloading'
 
 - platform: speedtest
   monitored_conditions:
