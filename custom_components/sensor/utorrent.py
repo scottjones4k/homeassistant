@@ -48,7 +48,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     port = config.get(CONF_PORT)
     address = config.get(CONF_HOST)
     if (port is not None):
-        address += ':' + port
+        address += ':' + str(port)
     baseUri = 'http://'+address+'/gui/'
     auth = (config.get(CONF_USERNAME), config.get(CONF_PASSWORD))
     dev = []
@@ -64,11 +64,8 @@ class uTorrentSensor(Entity):
     def __init__(self, sensor_type,  client_name, baseUri, auth):
         """Initialize the sensor."""
         self._name = SENSOR_TYPES[sensor_type][0]
-        address = host
-        if (port is not None):
-            address += ':' + str(port)
-        self.baseUri = 'http://'+address+'/gui/'
-        self.auth = (username, password)
+        self.baseUri = baseUri
+        self.auth = auth
         self.type = sensor_type
         self.client_name = client_name
         self._state = None
