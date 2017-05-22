@@ -71,6 +71,7 @@ class uTorrentSensor(Entity):
         self._state = None
         self._unit_of_measurement = SENSOR_TYPES[sensor_type][1]
         self.encoding = "utf-8"
+        _LOGGER.error("init" + self._name)
 
     @property
     def name(self):
@@ -90,11 +91,13 @@ class uTorrentSensor(Entity):
     # pylint: disable=no-self-use
     def refresh_utorrent_data(self):
         """Call the throttled uTorrent refresh method."""
+        _LOGGER.error("refreshing " + self._name)
         res = requests.get(self.baseUri + 'token.html', auth=self.auth)
         token = res.content[44:108].decode(encoding)
         res2 = requests.get(self.baseUri + '?list=1&token='+token, auth=self.auth, cookies=res.cookies)
         js = json.loads(res2.content.decode(encoding))
         self.torrents = js['torrents']
+        _LOGGER.error("refreshed " + self._name)
 
     def update(self):
         """Get the latest data from uTorrent and updates the state."""
@@ -105,21 +108,21 @@ class uTorrentSensor(Entity):
         for torrent in self.torrents:
             upload += torrent[8]
             download += torrent[9]
-        if upload > 0 and download > 0:
-            self._state = 'Up/Down'
-        elif upload > 0 and download == 0:
-            self._state = 'Seeding'
-        elif upload == 0 and download > 0:
-            self._state = 'Downloading'
-        else:
-            self._state = STATE_IDLE
+        if self.type == 'current_status':
+            if upload > 0 and download > 0:
+                self._state = 'Up/Down'
+            elif upload > 0 and download == 0:
+                self._state = 'Seeding'
+            elif upload == 0 and download > 0:
+                self._state = 'Downloading'
+            else:
+                self._state = STATE_IDLE
 
-        if self.transmission_client.session:
-            if self.type == 'download_speed':
-                mb_spd = float(download)
-                mb_spd = mb_spd / 1024 / 1024
-                self._state = round(mb_spd, 2 if mb_spd < 0.1 else 1)
-            elif self.type == 'upload_speed':
-                mb_spd = float(upload)
-                mb_spd = mb_spd / 1024 / 1024
-                self._state = round(mb_spd, 2 if mb_spd < 0.1 else 1)
+        if self.type == 'download_speed':
+            mb_spd = float(download)
+            mb_spd = mb_spd / 1024 / 1024
+            self._state = round(mb_spd, 2 if mb_spd < 0.1 else 1)
+        elif self.type == 'upload_speed':
+            mb_spd = float(upload)
+            mb_spd = mb_spd / 1024 / 1024
+            self._state = round(mb_spd, 2 if mb_spd < 0.1 else 1)
