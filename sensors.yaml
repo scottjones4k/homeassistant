@@ -1,3 +1,9 @@
+- platform: utorrent
+  host: !secret utorrent_host
+  port: !secret utorrent_port
+  username: !secret utorrent_username
+  password: !secret utorrent_password
+
 - platform: speedtest
   monitored_conditions:
     - ping
