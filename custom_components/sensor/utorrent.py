@@ -5,6 +5,7 @@ https://home-assistant.io/components/sensor.transmission/
 """
 import logging
 from datetime import timedelta
+import requests, json
 
 import voluptuous as vol
 
