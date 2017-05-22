@@ -27,7 +27,7 @@ DEFAULT_PORT = None
 
 SENSOR_TYPES = {
     'torrents_seeding': ['Seeding', None],
-    'torrents_downloading': ['Seeding', None],
+    'torrents_downloading': ['Downloading', None],
     'current_status': ['Status', None],
     'download_speed': ['Down Speed', 'MB/s'],
     'upload_speed': ['Up Speed', 'MB/s']
