@@ -120,7 +120,7 @@ history:
       - light
 hive:
   username: laura.redshaw@gmail.com
-  password: 1372583697
+  password: !secret http_password
 
 zone: !include zones.yaml
 sensor: !include sensors.yaml
