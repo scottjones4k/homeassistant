@@ -102,6 +102,23 @@ nest:
     - binary_sensor.downstairs_nest_protect_online
     - binary_sensor.upstairs_nest_protect_online
 
+hive:
+  name: Hive
+  entities:
+    - sensor.hive_current_temperature
+    - sensor.hive_target_temperature
+    - sensor.hive_heating_state
+    - sensor.hive_heating_boost
+    - sensor.hive_thermostat_battery_level
+
+utorrent:
+  name: uTorrent
+  entities:
+    - sensor.utorrent_status
+    - sensor.utorrent_seeding
+    - sensor.utorrent_downloading
+    - sensor.utorrent_up_speed
+    - sensor.utorrent_down_speed
 other:
   name: Other
   entities:

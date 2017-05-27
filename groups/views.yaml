@@ -17,8 +17,10 @@ misc:
   view: yes
   entities:
     - group.nest
+    - group.hive
     - group.other
     - group.updates
+    - group.utorrent
 
 devices_view:
   name: Devices
