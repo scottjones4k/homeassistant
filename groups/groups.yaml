@@ -39,7 +39,8 @@ people:
     - device_tracker.lauraphone
     - device_tracker.scottphone
     - sensor.battery_scott
-
+    - device_tracker.mumphone
+    - device_tracker.dadphone
 devices:
   name: Devices
   entities:
@@ -59,6 +60,7 @@ devices:
     - device_tracker.chromecast
     - device_tracker.bedroomalexa
     - device_tracker.livingroomalexa
+    - device_tracker.tplink
 
 network_stats:
   name: Network
