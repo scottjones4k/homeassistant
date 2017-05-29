@@ -158,7 +158,7 @@ alexa:
           {%- for state in states.device_tracker -%}
             {%- if state.name.lower() == User.lower() -%}
               {{ state.name }} is at {{ state.state }}
-              {% set found = false %}
+              {% set found = true %}
             {%- elif loop.last and not found -%}
               I am sorry, I do not know where {{ User }} is.
             {%- endif -%}
