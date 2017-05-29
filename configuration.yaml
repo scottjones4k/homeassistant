@@ -122,6 +122,11 @@ hive:
   username: laura.redshaw@gmail.com
   password: !secret http_password
 
+switch:
+  - platform: tplink
+    name: Fan
+    host: 172.16.5.62
+
 zone: !include zones.yaml
 sensor: !include sensors.yaml
 input_boolean: !include input_boolean.yaml
@@ -193,3 +198,27 @@ alexa:
         type: simple
         title: Light turned off
         content: The {{ Light }} was turned off
+    SwitchOnIntent:
+      action:
+        service: switch.turn_on
+        data_template:
+          entity_id: switch.{{ Switch | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Switch turned on
+        content: The {{ Switch }} was turned on
+    SwitchOffIntent:
+      action:
+        service: switch.turn_off
+        data_template:
+          entity_id: switch.{{ Switch | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Switch turned off
+        content: The {{ Switch }} was turned off
