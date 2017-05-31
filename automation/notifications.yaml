@@ -51,11 +51,11 @@
   trigger:
     - platform: event
       event_type: download_finished
-      to: 'on'
   action:
     service: notify.global
     data_template:
-      message: {{ trigger.event.data.data["message"] }}
+      message: >
+        {{ trigger.event.data["message"] }}
       title: 'Download complete'
       data:
         url: https://ladyroad.duckdns.org:8123
