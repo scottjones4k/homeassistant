@@ -47,7 +47,7 @@
       data:
         url: "https://home-assistant.io/getting-started/installation-raspberry-pi-all-in-one/#upgrading"
 
-        - alias: 'Everyone Gone'
+- alias: 'Notify download finished'
   trigger:
     - platform: event
       event_type: download_finished
