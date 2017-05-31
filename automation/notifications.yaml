@@ -46,3 +46,16 @@
       message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
       data:
         url: "https://home-assistant.io/getting-started/installation-raspberry-pi-all-in-one/#upgrading"
+
+        - alias: 'Everyone Gone'
+  trigger:
+    - platform: event
+      event_type: download_finished
+      to: 'on'
+  action:
+    service: notify.global
+    data_template:
+      message: {{ trigger.event.data.data["message"] }}
+      title: 'Download complete'
+      data:
+        url: https://ladyroad.duckdns.org:8123
