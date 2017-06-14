@@ -74,6 +74,13 @@ nest:
 ifttt:
   key: !secret ifttt
 
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_key
+    allowed_chat_ids:
+      - !secret telegram_chat
+
+
 notify:
   - name: pushover
     platform: pushover
@@ -81,7 +88,6 @@ notify:
     user_key: !secret pushover_user_key
   - name: telegramscott
     platform: telegram
-    api_key: !secret telegram_key
     chat_id: !secret telegram_chat
   - name: global
     platform: group
