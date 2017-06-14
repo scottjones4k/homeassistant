@@ -1,0 +1,246 @@
+- id: newdevice
+  alias: New device detected
+  trigger:
+    platform: event
+    event_type: device_tracker_new_device
+  action:
+    service: notify.global
+    data:
+      message: 'New device detected on network'
+      title: 'New device'
+
+- id: sunsetlight
+  alias: Turn on light when sun sets
+  trigger:
+    - platform: sun
+      event: sunset
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.people
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.relax_downstairs
+
+- id: homelight
+  alias: Turn on light when someone comes home
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.people
+        state: 'home'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+  action:
+    service: light.turn_on
+    entity_id: light.stairs
+
+- id: stairsoff
+  alias: Stairs Off
+  trigger:
+    - platform: state
+      entity_id: light.stairs
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.stairs_delayed_off
+
+- id: night
+  alias: Night Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off
+
+- id: nightguest
+  alias: Night Mode Guest
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off_guest
+
+- id: bedtime
+  alias: Bedtime
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.bedtime
+
+- id: nightoff
+  alias: 'Turn off night mode'
+  trigger:
+    - platform: sun
+      event: sunrise
+
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.night_mode
+
+- id: away
+  alias: 'Set Away Mode'
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'not_home'
+
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.away_mode
+
+- id: home
+  alias: 'Set Home Mode'
+  trigger:
+    - platform: state
+      entity_id: group.people
+      to: 'home'
+
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.away_mode
+
+- id: awayalloff
+  alias: 'Everyone Gone All Off'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.away_mode
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.turn_all_off
+
+- id: pingpong
+  alias: 'telegram bot that reply pong to ping'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/ping'
+  action:
+    - service: notify.telegramscott
+      data:
+        message: 'pong'
+
+- id: armhome
+  alias: 'telegram bot to set alarm home'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/arm-home'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_home
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_away
+
+- id: armaway
+  alias: 'telegram bot to set alarm away'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/arm-away'
+  action:
+    - service: input_boolean.turn_on 
+      entity_id: input_boolean.alarm_away
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_home
+
+- id: disarm
+  alias: 'telegram bot to disarm alarm'
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/disarm'
+      args: "7708"
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_home
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_away
+
+- id: telegram
+  alias: 'Telegram commands'
+  trigger:
+    platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/start'
+  action:
+    - service: notify.telegramscott
+      data:
+        message: 'commands'
+        data:
+          keyboard:
+            - '/arm-home, /arm-away'
+            - '/ping'
+
+- id: timerlivingon
+  alias: 'timer_living_on'
+  trigger:
+    - platform: event
+      event_type: alexa.timer.activated
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.living_room
+        state: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.flash_living_room_multiple_already_on
+
+- id: timerlivingoff
+  alias: 'timer_living_off'
+  trigger:
+    - platform: event
+      event_type: alexa.timer.activated
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.living_room
+        state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.flash_living_room_multiple

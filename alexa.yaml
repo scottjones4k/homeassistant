@@ -1,0 +1,84 @@
+  intents:
+    WhereAreWeIntent:
+      speech:
+        type: plaintext
+        text: >
+          {%- if is_state('device_tracker.scottphone', 'home') and
+                 is_state('device_tracker.lauraphone', 'home') -%}
+            You are both at home
+          {%- else -%}
+            Scott is at {{ states("device_tracker.scottphone") }}
+            and Laura is at {{ states("device_tracker.lauraphone") }}
+          {% endif %}
+
+    LocateIntent:
+      action:
+        service: notify.global
+        data_template:
+          message: The location of {{ User }} has been queried via Alexa.
+      speech:
+        type: plaintext
+        text: >
+          {% set found = false %}
+          {%- for state in states.device_tracker -%}
+            {%- if state.name.lower() == User.lower() -%}
+              {{ state.name }} is at {{ state.state }}
+              {% set found = true %}
+            {%- elif loop.last and not found -%}
+              I am sorry, I do not know where {{ User }} is.
+            {%- endif -%}
+          {%- else -%}
+            Sorry, I don't have any trackers registered.
+          {%- endfor -%}
+      card:
+        type: simple
+        title: Query Location
+        content: The location of {{ User }} has been queried.
+    LightOnIntent:
+      action:
+        service: light.turn_on
+        data_template:
+          entity_id: light.{{ Light | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Light turned on
+        content: The {{ Light }} was turned on
+    LightOffIntent:
+      action:
+        service: light.turn_off
+        data_template:
+          entity_id: light.{{ Light | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Light turned off
+        content: The {{ Light }} was turned off
+    SwitchOnIntent:
+      action:
+        service: switch.turn_on
+        data_template:
+          entity_id: switch.{{ Switch | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Switch turned on
+        content: The {{ Switch }} was turned on
+    SwitchOffIntent:
+      action:
+        service: switch.turn_off
+        data_template:
+          entity_id: switch.{{ Switch | replace(" ", "_") }}
+      speech:
+        type: plaintext
+        text: !include alexa_confirm.yaml
+      card:
+        type: simple
+        title: Switch turned off
+        content: The {{ Switch }} was turned off
