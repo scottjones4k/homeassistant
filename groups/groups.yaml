@@ -57,6 +57,7 @@ devices:
     - device_tracker.vonage
     - device_tracker.wifiap
     - device_tracker.xboxone
+    - device_tracker.xboxones
     - device_tracker.chromecast
     - device_tracker.bedroomalexa
     - device_tracker.livingroomalexa

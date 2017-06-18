@@ -38,6 +38,9 @@ device_tracker.livingroomtv:
 device_tracker.xboxone:
   icon: mdi:gamepad-variant
 
+device_tracker.xboxones:
+  icon: mdi:gamepad-variant
+
 device_tracker.hue:
   icon: mdi:lightbulb
 
