@@ -61,7 +61,6 @@
               {{ states.sensor.battery_scott.state }}
           {%- endif %}
 
-sensor:
-  - platform: fitbit
-    monitored_resources:
-      - "body/weight"
+- platform: fitbit
+  monitored_resources:
+    - "body/weight"
