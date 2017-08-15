@@ -125,9 +125,6 @@ history:
       - sensor
       - switch
       - light
-hive:
-  username: laura.redshaw@gmail.com
-  password: !secret http_password
 
 switch:
   - platform: tplink

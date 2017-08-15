@@ -38,6 +38,7 @@ people:
   entities:
     - device_tracker.lauraphone
     - device_tracker.scottphone
+    - device_tracker.lggwatchr
     - sensor.battery_scott
     - device_tracker.mumphone
     - device_tracker.dadphone
@@ -104,15 +105,6 @@ nest:
     - sensor.upstairs_nest_protect_battery_health
     - binary_sensor.downstairs_nest_protect_online
     - binary_sensor.upstairs_nest_protect_online
-
-hive:
-  name: Hive
-  entities:
-    - sensor.hive_current_temperature
-    - sensor.hive_target_temperature
-    - sensor.hive_heating_state
-    - sensor.hive_heating_boost
-    - sensor.hive_thermostat_battery_level
 
 utorrent:
   name: uTorrent
